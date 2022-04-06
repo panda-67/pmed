@@ -1,8 +1,15 @@
-{% extends "main.html" %}
+<!-- @format -->
 
-{% block title %}Index{% endblock %}
-
-{% block content %}
-
-<h1 class="text-white bg-yellow-500">Halaman Index</h1>
+{% extends "article.html" %} {% block title %}Article Index{% endblock %} {% block article %}
+<div class="mx-4 p-10 max-w-6xl flex gap-4">
+    <div>
+        <h2>Published Article</h2>
+        <ul class="text-gray-200">
+            {% for article in articles %}
+            <a href="{% url 'single' article.slug %}"><li>{{ article.title }}</li></a>
+            <li>{{ article.created_at}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

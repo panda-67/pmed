@@ -1,30 +1,36 @@
 {% load static%}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PMED | {% block title %}{% endblock %}</title>
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-  </head>
 
-  <body>
-    {% block header %}{% endblock %}
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMED | {% block title %}{% endblock %}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="" />
+  <link rel="stylesheet" href="{% static 'app.css' %}">
+</head>
 
-    <!-- navbar -->
-    
-    <!-- end navbar -->
+<body>
+  <!-- navbar -->
+  <div class="px-8 bg-stone-900 text-white">
+    {% include "navbar.html" %}
+  </div>
+  <!-- end navbar -->
+  
+  
+  <div>
+    {% block content %}{% endblock %}
+  </div>
 
-    <!-- content -->
-    <div>{% block content %}{% endblock %}</div>
-    <!-- end content -->
-
-    <!-- Foooter -->
-    <!-- End of footer -->    
-
+  <!-- Foooter -->
+  <div>
+    {% comment %} {% include "footer.html" %} {% endcomment %}
+  </div>
+  <!-- End of footer -->
   <script src="{% static 'app.js' %}"></script>
-  </body>
+</body>
+
 </html>

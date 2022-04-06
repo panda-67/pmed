@@ -4,7 +4,7 @@ module.exports = {
 	entry: './src/index.js',
 	output: {
 		path: path.resolve(__dirname, 'static'),
-		filename: 'app.js',
+		filename: 'app.js'
 	},
 	module: {
 		rules: [
@@ -32,12 +32,11 @@ module.exports = {
 	},
 	watch: true,
 	watchOptions: {
+		aggregateTimeout: 200,
 		ignored: [
-			/node_modules/,
-			/src/,
-			/pmed/,
-			/article/,
+			'/node_modules',
+			'/src',
+			'/pmed'
 		],
-		// aggregateTimeout: 2000,
 	},
 };
