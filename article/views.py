@@ -1,9 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import FormView, ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from article.models import Article
+from article.form import ArticleForm
+from django.http import request
 
 
 # def index(request):
@@ -15,18 +15,11 @@ class IndexView(ListView):
     context_object_name = 'articles'
     template_name = "article/index.html"
 
-
-class CreateView(CreateView):
-    model = Article
-    fields = [
-        'title',
-        'slug',
-        'status',
-        'content',
-        'author'
-    ]
-    success_url = reverse_lazy('index')
-    template_name = "article/create.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['unpublish'] = Article.objects.filter(status='0')
+        context['active'] = 'index'
+        return context
 
 
 class SingleView(DetailView):
@@ -40,17 +33,31 @@ class SingleView(DetailView):
         return context
 
 
+class CreateView(FormView):
+    form_class = ArticleForm
+    success_url = reverse_lazy('index')
+    template_name = "article/create.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['active'] = 'create'
+        return context
+
+
 class UpdateView(UpdateView):
     model = Article
-    fields = [
-        'title',
-        'slug',
-        'status',
-        'content',
-        'author'
-    ]
+    context_object_name = 'article'
+    form_class = ArticleForm
     template_name = "article/update.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['active'] = 'create'
+        return context
 
 class DestroyView(DeleteView):
     model = Article

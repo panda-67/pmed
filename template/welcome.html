@@ -1,14 +1,12 @@
 <!-- @format -->
 
-{% extends "main.html" %} 
-{% block title %}Welcome{% endblock %} 
-
-{% block content %}
-<div class="p-10 w-screen">
-    <div class="flex items-center justify-start bg-slate-50 rounded-lg shadow-lg shadow-slate-700">
-        <div class="text-slate-900 my-48 mx-5 px-20">
-            <p class="text-xl font-bold">Welcome to PMED News and Services</p>
-            <p>Your satisfied our pride.</p>
+{% extends "main.html" %} {% block title %}Welcome{% endblock %} {% block content %}
+<div class="container">
+    <div class="card justify-content-center shadow-lg" style="height: 80vh;">
+        <div class="text-center p-5 my-5">
+            <h3 class="card-title">Welcome to PMED News and Services</h3>
+            <p class="card-text h5 mt-2 mb-5">Your satisfied is our pride.</p>
+            <a href="{% url 'index' %}" class="btn btn-success">Go to Article</a>
         </div>
     </div>
 </div>

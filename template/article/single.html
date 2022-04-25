@@ -1,29 +1,30 @@
 <!-- @format -->
+{% extends "article.html" %}
 
-{% extends "article.html" %} {% block title %}{{ article.title }}{% endblock %} {% block article %}
+{% load humanize %}
+{% block title %}{{ article.title }}{% endblock %} 
+{% block article %}
 <div class="mx-4 mt-6 p-10">
-    <h2 class="text-gray-300 text-2xl font-bold">{{ article.title }}</h2>
-    <div class="text-gray-200 mb-5 flex gap-4">
-        <p class="">By {{ article.author.first_name }} on {{ article.created_at}}</p>
-        <p class="mb-4"> Updated {{ article.updated_at}}</p>
+    <h3 class="justify-content-center">{{ article.title|title }}<span class="text-warning h6 fst-italic">{% if article.status == 0 %} --Unpublished {% endif %}</span></h3>
+    <div class"text-gray-200 mb-5 flex gap-4">
+        <p class="">By {{ article.author.full_name}} {{ article.created_at|naturaltime }}</p>
+        <p class="mb-4"> Updated {{ article.updated_at|naturalday }}</p>
     </div>
     <p class="mb-5">{{ article.content }}</p>
 
-    <a href="{% url 'update' article.id %}" class="btn btn-sm btn-secondary">Edit</a>
-    <a href="{% url 'destroy' article.id %}" class="btn btn-sm btn-base">Delete</a>
+    <a href="{% url 'update' article.id %}" class="btn btn-sm btn-success">Edit</a>
+    <a href="{% url 'destroy' article.id %}" class="btn btn-sm btn-danger">Delete</a>
 </div>
-{% endblock %} {% block sidebar %}
-<div class="mx-4 mt-6 p-10">
-    <h2 class="font-bold">Latest Article</h2>
-    <ul class="text-gray-200">
+{% endblock %} 
+{% block sidebar %}
+<div class="text-end mx-2 p-4">
+    <h4 class="font-bold">Latest Article</h4>
+    <ul class="text-dark">
         {% for article in articles %}
-        <a href="{% url 'single' article.slug %}">
-            <li>{{ article.title }}</li>
+        <a class="text-decoration-none" href="{% url 'single' article.slug %}">
+            <li class="list-unstyled">{{ article.title }}</li>
         </a>
         {% endfor %}
     </ul>
 </div>
 {% endblock %}
-<div class="">
-    <div></div>
-</div>

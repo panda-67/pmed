@@ -1,8 +1,20 @@
-{% extends "article.html" %}
+<!-- @format -->
 
-{% block article %}
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update" class="btn btn-sm btn-accent cursor-pointer">
-</form>
+{% extends "main.html" %} {% block title %}{{ article.title }} | Update {% endblock %} {% block content %}
+<div class="container">
+    <h3 class="text-center">Update Article</h3>
+    <form method="post">
+        {% csrf_token %} 
+        <div class="">{{ form.title.errors }} {{ form.title.label_tag }} {{ form.title }}</div>
+        <div class="">{{ form.content.errors }} {{ form.content.label_tag }} {{ form.content }}</div>
+        <div class="d-flex gap-3">
+            {{ form.status.errors }} {{ form.status.label_tag }}
+            <div class="form-check form-switch">{{ form.status }}</div>
+            <div>Author: {{ article.author.full_name }}</div>
+        </div>
+        {{ form.author }}
+        <input type="submit" value="Update" class="btn btn-sm btn-success" />
+        <a href="{% url 'single' article.slug %}" class="btn btn-sm btn-secondary">Cancel</a>
+    </form>
+</div>
 {% endblock %}

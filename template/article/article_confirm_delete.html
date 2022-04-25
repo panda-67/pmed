@@ -1,12 +1,12 @@
 {% extends "main.html" %}
 
 {% block content %}
-<div class="p-10">
-    <form method="post" class="bg-slate-300 rounded-md py-6 px-8 text-slate-900">{% csrf_token %}
-        <p class="my-3">Are you sure you want to delete "<span class="italic font-semibold">{{ object }}</span>"?</p>
+<div class="container px-4 pt-2 pb-4 border-2 shadow-lg">
+    <form method="post" class="">{% csrf_token %}
+        <p class="my-3">Are you sure you want to delete "<span class="fst-italic">{{ object }}</span>"?</p>
         {{ form }}
-        <input type="submit" value="Confirm" class="btn btn-sm btn-warning cursor-pointer">
-        <a href="{% url 'single' article.slug %}" class="btn btn-sm btn-base">Cancel</a>
+        <input type="submit" value="Confirm" class="btn btn-sm btn-danger">
+        <a href="{% url 'single' article.slug %}" class="btn btn-sm btn-info">Cancel</a>
     </form>
 </div>
 {% endblock %}

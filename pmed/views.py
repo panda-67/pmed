@@ -5,4 +5,4 @@ from django.views.generic import TemplateView
 #     return HttpResponse("Hello, world. You're at the polls index.")
 
 class WelcomeView(TemplateView):
-    template_name = "welcome.html"
+    pass

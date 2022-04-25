@@ -1,3 +1,53 @@
+<!-- @format -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand {% if url == 'welcome' %} active {% endif %}" href="{% url 'welcome' %}">PMED</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px">
+                <li class="nav-item">
+                    <a class="nav-link {% if active == 'index' %} active {% endif %}" aria-current="page" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if active == 'create' %} active {% endif %}" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Setting
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item" href="{% url 'create' %}">Create</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="#">Profil</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">FAQ</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+{% comment %}
 <div class="navbar">
     <div class="flex-1">
         <a href="{% url 'welcome' %}" class="link link-hover normal-case text-xl">PMED</a>
@@ -7,18 +57,19 @@
             <li><a href="{% url 'index' %}">Index</a></li>
             <li tabindex="0">
                 <a>
-                    Parent
-                    <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24 24">
+                    Setting
+                    <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                         <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                     </svg>
                 </a>
-                <ul class="p-2 bg-base-100">
-                    <li><a>Submenu 1</a></li>
+                <ul class="p-1 bg-slate-300 text-slate-900">
+                    <li><a href="{% url 'create' %}" class="hover:bg-slate-500 hover:text-white">Create</a></li>
                     <li><a>Submenu 2</a></li>
                 </ul>
             </li>
-            <li><a>Item 3</a></li>
+            <li><a href="{% url 'logout' %}">Logged Out</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
         </ul>
     </div>
 </div>
+{% endcomment %}

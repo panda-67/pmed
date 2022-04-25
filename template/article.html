@@ -4,9 +4,9 @@
 
 {% block content %}
 <!-- content -->
-<div class="flex h-screen">
-    <div class="w-8/12">{% block article %}{% endblock %}</div>
-    <div class="w-4/12">{% block sidebar %}{% endblock %}</div>
+<div class="row">
+    <div class="col-8">{% block article %}{% endblock %}</div>
+    <div class="col-4">{% block sidebar %}{% endblock %}</div>
 </div>
 <!-- end content -->
 {% endblock %}
